@@ -12,6 +12,7 @@ export class SchemaService {
   ) {}
 
   async store (data: SchemaDto) {
+    console.log('===================')
     return await this.schema.save(data)
   }
 
