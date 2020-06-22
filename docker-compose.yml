@@ -1,0 +1,47 @@
+version: '3.5'
+
+services: 
+    shop_server:
+        image: node
+        working_dir: /home/node/app
+        command: npm config set registry https://registry.npm.taobao.org
+        command: npm run start:dev
+        volumes: 
+            - .:/home/node/app
+        ports: 
+            - ${APP_PORT}:3000
+        depends_on: 
+            - db
+            - cache
+        networks: 
+            - backend
+            - fronted
+    db:
+        image: mysql:${MYSQL_VERSION}
+        restart: always
+        ports: 
+            - ${MYSQL_PORT}:3306
+        volumes: 
+            - ${MYSQL_DATADIR}:/var/lib/mysql
+            - ${MYSQL_CONFDIR}:/etc/mysql/conf.d
+        environment: 
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+        networks:
+            - backend
+    cache:
+        image: redis
+        restart: always
+        ports: 
+            - ${REDIS_PORT}:6379
+        volumes: 
+            - ${REDIS_DATADIR}:/data
+            # - ${REDIS_CONFFILE}:/usr/local/etc/redis/redis.conf
+        networks: 
+            - backend
+
+networks:
+    fronted:
+        driver: bridge
+    backend:
+        driver: bridge
