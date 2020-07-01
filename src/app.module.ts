@@ -3,9 +3,9 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import {ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { SchemaModule } from './modules/schema/schema.module';
 import * as store from 'cache-manager-redis-store'
 import { APP_INTERCEPTOR } from '@nestjs/core';
+
 
 @Module({
   imports: [
@@ -18,7 +18,6 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         ttl: Number(process.env.CACHE_TTL),
         max: Number(process.env.CACHE_MAX)
       }),
-    SchemaModule
   ],
   controllers: [AppController],
   providers: [
