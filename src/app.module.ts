@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import * as store from 'cache-manager-redis-store'
 import { APP_INTERCEPTOR } from '@nestjs/core'
 import { BrandModule } from './modules/brand/brand.module';
+import { CategoryModule } from './modules/category/category.module';
+import { TagModule } from './modules/tag/tag.module';
 
 @Module({
   imports: [
@@ -18,7 +20,9 @@ import { BrandModule } from './modules/brand/brand.module';
         ttl: Number(process.env.CACHE_TTL),
         max: Number(process.env.CACHE_MAX)
       }),
-    BrandModule
+    BrandModule,
+    CategoryModule,
+    TagModule
   ],
   controllers: [AppController],
   providers: [

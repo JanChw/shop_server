@@ -26,14 +26,14 @@ export class BrandService {
     return this.brand.update(id, data)
   }
 
-  async findAll ( opts: PaginationDto, type: -1 | 1) {
-    console.log(typeof type)
-    console.log(opts)
+  async findAll ( opts: PaginationDto) {
+    const { skip, take, type } = opts
     return await this.brand.find({
       order: {
         id: type
       },
-      ...opts
+      skip,
+      take
     })
   }
 

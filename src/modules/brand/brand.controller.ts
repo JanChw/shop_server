@@ -40,9 +40,8 @@ export class BrandController {
 
   @Get()
   @CatchError()
-  async findAll (@Pagination() paginaion: PaginationDto, @Query('type') type?: undefined | string) {
-    const _type: -1 | 1  = !type ? 1 : ( type === '1' ? 1 : -1)
-    return await this.brandService.findAll(paginaion, _type)
+  async findAll (@Pagination() paginaion: PaginationDto) {
+    return await this.brandService.findAll(paginaion)
   }
 
 }
