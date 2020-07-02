@@ -8,6 +8,9 @@ import { APP_INTERCEPTOR } from '@nestjs/core'
 import { BrandModule } from './modules/brand/brand.module';
 import { CategoryModule } from './modules/category/category.module';
 import { TagModule } from './modules/tag/tag.module';
+import { ShareModule } from './modules/share/share.module';
+import { GoodsModule } from './modules/goods/goods.module';
+import { BaseModule } from './module/base/base.module';
 
 @Module({
   imports: [
@@ -22,7 +25,10 @@ import { TagModule } from './modules/tag/tag.module';
       }),
     BrandModule,
     CategoryModule,
-    TagModule
+    TagModule,
+    ShareModule,
+    GoodsModule,
+    BaseModule
   ],
   controllers: [AppController],
   providers: [

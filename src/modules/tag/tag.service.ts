@@ -32,7 +32,7 @@ export class TagService {
       },
       skip,
       take,
-      relations: ['category']
+      relations: ['category', 'goods']
     })
   }
 

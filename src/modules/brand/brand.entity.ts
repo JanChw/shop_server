@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Goods } from "../goods/goods.entity";
 
 @Entity()
 export class Brand {
@@ -13,6 +14,9 @@ export class Brand {
 
   @Column({ default: '' })
   desc?: string
+
+  @OneToMany(type => Goods, goods => goods.brand)
+  goods: Goods[]
 
   @CreateDateColumn()
   created_at: Date

@@ -28,12 +28,13 @@ export class BrandService {
 
   async findAll ( opts: PaginationDto) {
     const { skip, take, type } = opts
-    return await this.brand.find({
+    return await this.brand.findAndCount({
       order: {
         id: type
       },
       skip,
-      take
+      take,
+      relations: ['goods']
     })
   }
 
