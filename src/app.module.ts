@@ -1,4 +1,5 @@
 import { Module, CacheModule, CacheInterceptor } from '@nestjs/common'
+import { ServeStaticModule } from "@nestjs/serve-static";
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import {ConfigModule } from '@nestjs/config'
@@ -11,6 +12,7 @@ import { TagModule } from './modules/tag/tag.module';
 import { ShareModule } from './modules/share/share.module';
 import { GoodsModule } from './modules/goods/goods.module';
 import { BaseModule } from './module/base/base.module';
+import { resolve } from 'path';
 
 @Module({
   imports: [
@@ -23,6 +25,14 @@ import { BaseModule } from './module/base/base.module';
         ttl: Number(process.env.CACHE_TTL),
         max: Number(process.env.CACHE_MAX)
       }),
+    ServeStaticModule.forRoot({
+      rootPath: resolve(__dirname, '../uploads/'),
+      serveRoot: '/image/',
+      serveStaticOptions: {
+        cacheControl: true,
+        maxAge: 60 * 60 * 24
+      }
+    }),
     BrandModule,
     CategoryModule,
     TagModule,

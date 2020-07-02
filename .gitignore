@@ -33,3 +33,4 @@ dist
 .history
 docker_volumes
 test
+uploads
