@@ -6,6 +6,7 @@ import { Brand } from "../brand/brand.entity";
 
 
 // 简化返回字段
+// 添加商品价格列表
 @Entity()
 export class Goods {
   @PrimaryGeneratedColumn('uuid')
@@ -23,8 +24,8 @@ export class Goods {
   @Column({ default: 9999 })
   sort_order?: number
 
-  @Column()
-  goods_number: number
+  @Column({ default: 0 })
+  goods_number?: number
 
   @Column({ default: 0 })
   sell_volume?: number

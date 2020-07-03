@@ -11,9 +11,11 @@ import { CategoryModule } from './modules/category/category.module';
 import { TagModule } from './modules/tag/tag.module';
 import { ShareModule } from './modules/share/share.module';
 import { GoodsModule } from './modules/goods/goods.module';
-import { BaseModule } from './module/base/base.module';
-import { resolve } from 'path';
+import { BaseModule } from './modules/base/base.module';
 import { ProductModule } from './modules/product/product.module';
+import { GoodsAttrModule } from './modules/goods_attr/goods_attr.module';
+import { GoodsAttrSpecModule } from './modules/goods_attr_spec/goods_attr_spec.module';
+import { resolve } from 'path';
 
 @Module({
   imports: [
@@ -41,7 +43,9 @@ import { ProductModule } from './modules/product/product.module';
     ShareModule,
     GoodsModule,
     BaseModule,
-    ProductModule
+    ProductModule,
+    GoodsAttrModule,
+    GoodsAttrSpecModule
   ],
   controllers: [AppController],
   providers: [

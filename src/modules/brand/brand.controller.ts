@@ -6,7 +6,7 @@ import { Pagination } from 'src/commons/decorators/pagination';
 import { PaginationDto } from 'src/commons/dto/pagination.dto';
 
 
-// todo 全局方法装饰器
+// todo 全局错误捕获装饰器
 @Controller('brand')
 export class BrandController {
   constructor (
