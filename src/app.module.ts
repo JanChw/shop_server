@@ -13,6 +13,7 @@ import { ShareModule } from './modules/share/share.module';
 import { GoodsModule } from './modules/goods/goods.module';
 import { BaseModule } from './module/base/base.module';
 import { resolve } from 'path';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
@@ -33,12 +34,14 @@ import { resolve } from 'path';
         maxAge: 60 * 60 * 24
       }
     }),
+    
     BrandModule,
     CategoryModule,
     TagModule,
     ShareModule,
     GoodsModule,
-    BaseModule
+    BaseModule,
+    ProductModule
   ],
   controllers: [AppController],
   providers: [
