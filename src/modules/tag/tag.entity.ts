@@ -14,7 +14,7 @@ export class Tag {
   @JoinColumn({ name: 'category_id'})
   category: Category
 
-  @OneToMany(type => Goods, goods => goods.tag)
+  @OneToMany(type => Goods, goods => goods.tag, { cascade: true })
   goods: Goods[]
 
   @UpdateDateColumn()

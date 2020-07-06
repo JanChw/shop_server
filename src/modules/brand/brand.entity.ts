@@ -15,7 +15,7 @@ export class Brand {
   @Column({ default: '' })
   desc?: string
 
-  @OneToMany(type => Goods, goods => goods.brand)
+  @OneToMany(type => Goods, goods => goods.brand, { cascade: true })
   goods: Goods[]
 
   @CreateDateColumn()

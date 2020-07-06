@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateCol
 import { Category } from "../category/category.entity";
 import { Tag } from "../tag/tag.entity";
 import { Brand } from "../brand/brand.entity";
+import { GoodsSale } from "src/commons/enums/goods_sale";
 
 
 
@@ -36,6 +37,9 @@ export class Goods {
   @Column()
   list_pic_url: string
 
+  @Column({ default: GoodsSale.ON_SALE })
+  is_on_sale: GoodsSale
+
   @Column({ default: false })
   is_delete?: boolean
 
@@ -43,7 +47,7 @@ export class Goods {
   is_new?: boolean
 
   @Column({ default: false })
-  is_host?: boolean
+  is_hot?: boolean
 
   @ManyToOne( type => Category, category => category.goods)
   @JoinColumn({ name: 'category_id'})

@@ -16,6 +16,7 @@ import { ProductModule } from './modules/product/product.module';
 import { GoodsAttrModule } from './modules/goods_attr/goods_attr.module';
 import { GoodsAttrSpecModule } from './modules/goods_attr_spec/goods_attr_spec.module';
 import { resolve } from 'path';
+import { CustomCacheInterceptor } from './commons/interceptors/custom_cache.interceptor';
 
 @Module({
   imports: [
@@ -52,7 +53,7 @@ import { resolve } from 'path';
     AppService,
     {
       provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor
+      useClass: CustomCacheInterceptor
     }
   ],
 })

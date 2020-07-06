@@ -23,7 +23,9 @@ export class GoodsController {
   }
 
   @Put('update/:id')
-  async update (@Param('id', ParseUUIDPipe) id: string, data: Partial<GoodsDto>) {
+  async update (@Param('id', ParseUUIDPipe) id: string, @Body() data: Partial<GoodsDto>) {
+    console.log('==========update=============')
+    console.log(id, data)
     return this.goodsService.update(id, data)
   }
 
@@ -34,6 +36,7 @@ export class GoodsController {
 
   @Get()
   async findAll (@Pagination() pagination: PaginationDto) {
+    console.log('=============all==============')
     return this.goodsService.findAll(pagination)
   }
 }

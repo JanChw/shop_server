@@ -27,11 +27,11 @@ export class Category {
   is_show: boolean
 
   // 关联标签
-  @OneToMany(type => Tag, tag => tag.category)
+  @OneToMany(type => Tag, tag => tag.category, { cascade: true })
   tags: Tag[]
 
   // 关联商品
-  @OneToMany(type => Goods, goods => goods.category)
+  @OneToMany(type => Goods, goods => goods.category, { cascade: true })
   goods: Goods[]
 
   @UpdateDateColumn()
