@@ -11,3 +11,7 @@ export class GoodsDto {
   readonly is_new?: boolean
   readonly is_host?: boolean
 }
+
+export class UpdateManyGoodsDto extends GoodsDto {
+  readonly ids: string []
+}

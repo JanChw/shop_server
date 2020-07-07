@@ -1,4 +1,4 @@
-import { Module, CacheModule, CacheInterceptor } from '@nestjs/common'
+import { Module, CacheModule } from '@nestjs/common'
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -17,6 +17,7 @@ import { GoodsAttrModule } from './modules/goods_attr/goods_attr.module';
 import { GoodsAttrSpecModule } from './modules/goods_attr_spec/goods_attr_spec.module';
 import { resolve } from 'path';
 import { CustomCacheInterceptor } from './commons/interceptors/custom_cache.interceptor';
+import { CustomSerializerInterceptor } from './commons/interceptors/custom_serializer.interceptor';
 
 @Module({
   imports: [
@@ -54,6 +55,10 @@ import { CustomCacheInterceptor } from './commons/interceptors/custom_cache.inte
     {
       provide: APP_INTERCEPTOR,
       useClass: CustomCacheInterceptor
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CustomSerializerInterceptor
     }
   ],
 })

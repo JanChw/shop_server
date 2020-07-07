@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Goods } from './goods.entity';
 import { Repository } from 'typeorm';
@@ -20,8 +20,20 @@ export class GoodsService {
     return await this.goods.delete(id)
   }
 
+  async delMany (ids: string[]) {
+    return await this.goods.delete(ids)
+  }
+
   async update (id: string, data: Partial<GoodsDto>) {
     return await this.goods.update(id, data)
+  }
+
+  async updateMany (ids: string[], data: Partial<GoodsDto>) {
+    return await this.goods.createQueryBuilder('updateMany')
+      .update(Goods)
+      .set(data)
+      .whereInIds(ids)
+      .execute()
   }
 
   async findById (id: string) {
@@ -30,6 +42,7 @@ export class GoodsService {
 
   async findAll (opts: PaginationDto) {
     const { skip, take, type } = opts
+
     return await this.goods.findAndCount({
       order: {
         'sort_order': type,
