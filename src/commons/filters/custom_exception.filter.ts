@@ -12,6 +12,8 @@ export class CustomExceptionFilter implements ExceptionFilter {
         ? [exception.getStatus(), exception.getResponse()['message']]
         : [HttpStatus.INTERNAL_SERVER_ERROR, '服务器内部异常'];
 
+    console.log(exception)
+  
     response
       .status(status)
       .json({

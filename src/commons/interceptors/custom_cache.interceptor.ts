@@ -17,7 +17,7 @@ export class CustomCacheInterceptor extends CacheInterceptor {
     if (method === 'GET' && value && !service) {
       return of (value)
     } else {
-      return next.handle().pipe(tap(res => method === 'GET' && this.cacheManager.set(key, res)))
+      return next.handle().pipe(tap(res => method === 'GET' && res.sucess && this.cacheManager.set(key, res)))
     }
     
   }
