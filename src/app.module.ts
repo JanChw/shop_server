@@ -18,6 +18,11 @@ import { GoodsAttrSpecModule } from './modules/goods_attr_spec/goods_attr_spec.m
 import { resolve } from 'path';
 import { CustomCacheInterceptor } from './commons/interceptors/custom_cache.interceptor';
 import { CustomSerializerInterceptor } from './commons/interceptors/custom_serializer.interceptor';
+import { UserModule } from './modules/user/user.module';
+import { StaffModule } from './modules/staff/staff.module';
+import { CartModule } from './modules/cart/cart.module';
+import { OrderModule } from './modules/order/order.module';
+import { OrderProductModule } from './modules/order_product/order_product.module';
 
 @Module({
   imports: [
@@ -47,7 +52,12 @@ import { CustomSerializerInterceptor } from './commons/interceptors/custom_seria
     BaseModule,
     ProductModule,
     GoodsAttrModule,
-    GoodsAttrSpecModule
+    GoodsAttrSpecModule,
+    UserModule,
+    StaffModule,
+    CartModule,
+    OrderModule,
+    OrderProductModule
   ],
   controllers: [AppController],
   providers: [

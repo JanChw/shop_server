@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToMany,ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToMany,ManyToOne, JoinColumn, JoinTable } from "typeorm";
 import { GoodsAttr } from "../goods_attr/goods_attr.entity";
 import { Product } from "../product/product.entity";
 
@@ -20,6 +20,7 @@ export class GoodsAttrSpec {
   attr: GoodsAttr
 
   @ManyToMany(type => Product, product => product.attrVals)
+  @JoinTable()
   products: Product[]
 
   @UpdateDateColumn()

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Delete, Param, Put, Get } from '@nestjs/common';
 import { GoodsAttrSpecService } from './goods_attr_spec.service';
-import CatchError from 'src/commons/decorators/catch_error';
+// import CatchError from 'src/commons/decorators/catch_error';
 import { GoodsAttrSpecDto } from './goods_attr_spec.dto';
 import { Pagination } from 'src/commons/decorators/pagination';
 import { PaginationDto } from 'src/commons/dto/pagination.dto';
@@ -12,33 +12,33 @@ export class GoodsAttrSpecController {
   ) {}
 
   @Post('create')
-  @CatchError()
+  // @CatchError()
   async create (@Body() data: GoodsAttrSpecDto) {
     return await this.goodsAttrSpecService.create(data)
   }
 
 
   @Delete('del/:id')
-  @CatchError()
+  // @CatchError()
   async del (@Param('id') id: string) {
     return this.goodsAttrSpecService.del(id)
   }
 
   @Put('update/:id')
-  @CatchError()
+  // @CatchError()
   async update (@Param('id') id: string, @Body() data: Partial<GoodsAttrSpecDto>) {
     return this.goodsAttrSpecService.update(id, data)
   }
 
 
   @Get(':id')
-  @CatchError()
+  // @CatchError()
   async findOne (@Param('id') id: string) {
     return await this.goodsAttrSpecService.findById(id)
   }
 
   @Get()
-  @CatchError()
+  // @CatchError()
   async findAll (@Pagination() paginaion: PaginationDto) {
     return await this.goodsAttrSpecService.findAll(paginaion)
   }

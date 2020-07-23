@@ -43,15 +43,30 @@ export class GoodsService {
   async findAll (opts: PaginationDto) {
     const { skip, take, type } = opts
 
-    return await this.goods.findAndCount({
-      order: {
-        'sort_order': type,
-        'sell_volume': type,
-        'id': type
-      },
-      skip,
-      take,
-      relations: ['category', 'brand', 'tag']
-    })
+    // return await this.goods.findAndCount({
+    //   order: {
+    //     'sort_order': type,
+    //     'sell_volume': type,
+    //     'id': type
+    //   },
+    //   skip,
+    //   take,
+    //   relations: ['category', 'brand', 'tag']
+    // })
+     return await this.goods.createQueryBuilder('goods')
+      .leftJoin('goods.category', 'category')
+      .addSelect('category.name')
+      .leftJoin('goods.brand', 'brand')
+      .addSelect(['brand.name'])
+      .leftJoin('goods.tag', 'tag')
+      .addSelect('tag.name')
+      .orderBy({
+        'goods.sort_order': type,
+        'goods.sell_volume': type,
+        'goods.id': type
+      })
+      .skip(skip)
+      .take(take)
+      .getManyAndCount()
   }
 }

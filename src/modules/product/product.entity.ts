@@ -14,6 +14,10 @@ export class Product {
   @Column({ precision: 2 })
   retail_price: number
 
+  // 属性值
+  @Column()
+  goods_attr_spec_ids: string
+
   @ManyToMany(type => GoodsAttrSpec)
   @JoinTable()
   attrVals: GoodsAttrSpec[]
